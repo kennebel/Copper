@@ -20,4 +20,16 @@ public partial class CharacterController : Node
 	public MeshInstance3D RearLeft { get; set; }
 	[Export]
 	public MeshInstance3D RearRight { get; set; }
+
+	[ExportGroup("Rigs")]
+	[Export]
+	public Node3D FaceRig { get; set; }
+	[Export]
+	public Node3D ArmLeftRig { get; set; }
+	[Export]
+	public Node3D ArmRightRig { get; set; }
+	[Export]
+	public Node3D CrownRig { get; set; }
+	[Export]
+	public Node3D RearRig { get; set; }
 }

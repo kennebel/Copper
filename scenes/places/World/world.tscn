@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5tuxn452vjsu"]
+[gd_scene load_steps=9 format=3 uid="uid://c5tuxn452vjsu"]
 
 [ext_resource type="Material" uid="uid://drrbmtxlergww" path="res://materials/BaseColors/MatBaseGreenDark.tres" id="1_gggph"]
 [ext_resource type="Script" uid="uid://c7k1g8hrrk28f" path="res://scenes/places/World/WorldController.cs" id="1_si5wr"]
 [ext_resource type="Script" uid="uid://dv76ocevchiyy" path="res://scenes/places/World/SunRig.cs" id="2_si5wr"]
 [ext_resource type="Material" uid="uid://b3l0na1o12ya4" path="res://materials/BaseColors/MatBaseYellow.tres" id="3_3156r"]
+[ext_resource type="PackedScene" uid="uid://cdykj51x185c5" path="res://scenes/things/House/house.tscn" id="4_we02a"]
+[ext_resource type="PackedScene" uid="uid://45sqojopc24u" path="res://scenes/things/Character/character.tscn" id="5_dcnh6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_we02a"]
 
@@ -30,6 +32,14 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 light_color = Color(1, 1, 0.85098, 1)
 
 [node name="ObjectsLayer" type="Node3D" parent="."]
+
+[node name="House" parent="ObjectsLayer" instance=ExtResource("4_we02a")]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -4, 0, -4)
+
+[node name="House2" parent="ObjectsLayer" instance=ExtResource("4_we02a")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 4, 0, -4)
+
+[node name="Character" parent="ObjectsLayer" instance=ExtResource("5_dcnh6")]
 
 [node name="CameraRig" type="Node3D" parent="."]
 

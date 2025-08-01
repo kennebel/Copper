@@ -5,6 +5,8 @@
 [ext_resource type="Material" uid="uid://dyv3kgghiahc2" path="res://materials/BaseColors/MatBaseBlueLight.tres" id="3_pxpce"]
 [ext_resource type="Material" uid="uid://y8go1llcik76" path="res://materials/BaseColors/MatBaseBlack.tres" id="4_ph4ud"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0csvq"]
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ee2ll"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_25xbw"]
@@ -15,18 +17,25 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_as2aq"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0csvq"]
-
-[node name="Character" type="RigidBody3D" node_paths=PackedStringArray("MainBody", "Nose", "EyeLeft", "EyeRight", "ArmLeft", "ArmRight", "RearLeft", "RearRight")]
+[node name="Character" type="RigidBody3D" node_paths=PackedStringArray("MainBody", "Nose", "EyeLeft", "EyeRight", "ArmLeft", "ArmRight", "RearLeft", "RearRight", "FaceRig", "ArmLeftRig", "ArmRightRig", "CrownRig", "RearRig")]
 script = ExtResource("1_x732h")
 MainBody = NodePath("Visual/MainBody")
-Nose = NodePath("Visual/Face/Nose")
-EyeLeft = NodePath("Visual/Face/EyeLeft")
-EyeRight = NodePath("Visual/Face/EyeRight")
+Nose = NodePath("Visual/FaceRig/Nose")
+EyeLeft = NodePath("Visual/FaceRig/EyeLeft")
+EyeRight = NodePath("Visual/FaceRig/EyeRight")
 ArmLeft = NodePath("Visual/ArmLeftRig/ArmLeft")
 ArmRight = NodePath("Visual/ArmRightRig/ArmRight")
 RearLeft = NodePath("Visual/RearRig/RearLeft")
 RearRight = NodePath("Visual/RearRig/RearRight")
+FaceRig = NodePath("Visual/FaceRig")
+ArmLeftRig = NodePath("Visual/ArmLeftRig")
+ArmRightRig = NodePath("Visual/ArmRightRig")
+CrownRig = NodePath("ExtraRigs/CrownRig")
+RearRig = NodePath("Visual/RearRig")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_0csvq")
 
 [node name="Visual" type="Node3D" parent="."]
 
@@ -35,27 +44,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 material_override = ExtResource("2_s6olu")
 mesh = SubResource("CapsuleMesh_ee2ll")
 
-[node name="Face" type="Node3D" parent="Visual"]
+[node name="FaceRig" type="Node3D" parent="Visual"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.5)
 
-[node name="Nose" type="MeshInstance3D" parent="Visual/Face"]
+[node name="Nose" type="MeshInstance3D" parent="Visual/FaceRig"]
 transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, -0.1, 0, 0.1, -4.37114e-09, 0, 0, -0.0646533)
 material_override = ExtResource("3_pxpce")
 mesh = SubResource("CapsuleMesh_25xbw")
 skeleton = NodePath("../..")
 
-[node name="EyeLeft" type="MeshInstance3D" parent="Visual/Face"]
+[node name="EyeLeft" type="MeshInstance3D" parent="Visual/FaceRig"]
 transform = Transform3D(0.15, 0, 0, 0, -3.0598e-09, -0.15, 0, 0.07, -6.55671e-09, -0.17, 0.17, 0.0722831)
 material_override = ExtResource("4_ph4ud")
 mesh = SubResource("CylinderMesh_t4x8i")
 
-[node name="EyeRight" type="MeshInstance3D" parent="Visual/Face"]
+[node name="EyeRight" type="MeshInstance3D" parent="Visual/FaceRig"]
 transform = Transform3D(0.15, 0, 0, 0, -3.0598e-09, -0.15, 0, 0.07, -6.55671e-09, 0.17, 0.17, 0.0722831)
 material_override = ExtResource("4_ph4ud")
 mesh = SubResource("CylinderMesh_t4x8i")
-
-[node name="Crown" type="Node3D" parent="Visual"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="ArmLeftRig" type="Node3D" parent="Visual"]
 transform = Transform3D(1, 0, 0, 0, 0.951057, -0.309017, 0, 0.309017, 0.951057, -0.5, 1.175, 0)
@@ -90,11 +96,12 @@ material_override = ExtResource("3_pxpce")
 mesh = SubResource("SphereMesh_as2aq")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_0csvq")
+[node name="ExtraRigs" type="Node3D" parent="."]
 
-[node name="StonesBase" type="Node3D" parent="."]
+[node name="CrownRig" type="Node3D" parent="ExtraRigs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="StonesBase" type="Node3D" parent="ExtraRigs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
 
-[node name="StonesRig" type="Node3D" parent="StonesBase"]
+[node name="StonesRig" type="Node3D" parent="ExtraRigs/StonesBase"]

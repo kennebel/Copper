@@ -1,3 +1,44 @@
-[gd_scene format=3 uid="uid://c5tuxn452vjsu"]
+[gd_scene load_steps=7 format=3 uid="uid://c5tuxn452vjsu"]
+
+[ext_resource type="Material" uid="uid://drrbmtxlergww" path="res://materials/BaseColors/MatBaseGreenDark.tres" id="1_gggph"]
+[ext_resource type="Script" uid="uid://c7k1g8hrrk28f" path="res://scenes/places/World/WorldController.cs" id="1_si5wr"]
+[ext_resource type="Script" uid="uid://dv76ocevchiyy" path="res://scenes/places/World/SunRig.cs" id="2_si5wr"]
+[ext_resource type="Material" uid="uid://b3l0na1o12ya4" path="res://materials/BaseColors/MatBaseYellow.tres" id="3_3156r"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_we02a"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_dcnh6"]
 
 [node name="World" type="Node3D"]
+script = ExtResource("1_si5wr")
+
+[node name="GroundLayer" type="Node3D" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="GroundLayer"]
+transform = Transform3D(25, 0, 0, 0, 0.2, 0, 0, 0, 25, 0, -0.1, 0)
+material_override = ExtResource("1_gggph")
+mesh = SubResource("BoxMesh_we02a")
+
+[node name="EnvironmentLayer" type="Node3D" parent="."]
+
+[node name="SunRig" type="Node3D" parent="EnvironmentLayer" node_paths=PackedStringArray("TheWorld")]
+script = ExtResource("2_si5wr")
+TheWorld = NodePath("../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="EnvironmentLayer/SunRig"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+light_color = Color(1, 1, 0.85098, 1)
+
+[node name="ObjectsLayer" type="Node3D" parent="."]
+
+[node name="CameraRig" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 1.57341, 1.64493)
+
+[node name="Temp" type="Node3D" parent="."]
+
+[node name="OriginIndicator" type="MeshInstance3D" parent="Temp"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+material_override = ExtResource("3_3156r")
+mesh = SubResource("SphereMesh_dcnh6")

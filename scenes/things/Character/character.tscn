@@ -17,7 +17,7 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_as2aq"]
 
-[node name="Character" type="RigidBody3D" node_paths=PackedStringArray("MainBody", "Nose", "EyeLeft", "EyeRight", "ArmLeft", "ArmRight", "RearLeft", "RearRight", "FaceRig", "ArmLeftRig", "ArmRightRig", "CrownRig", "RearRig")]
+[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("MainBody", "Nose", "EyeLeft", "EyeRight", "ArmLeft", "ArmRight", "RearLeft", "RearRight", "FaceRig", "ArmLeftRig", "ArmRightRig", "CrownRig", "RearRig")]
 script = ExtResource("1_x732h")
 MainBody = NodePath("Visual/MainBody")
 Nose = NodePath("Visual/FaceRig/Nose")

@@ -15,6 +15,7 @@
 [sub_resource type="BoxMesh" id="BoxMesh_6j4el"]
 
 [node name="House" type="StaticBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 1, 0)

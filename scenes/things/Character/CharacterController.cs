@@ -43,38 +43,48 @@ public partial class CharacterController : CharacterBody3D
 		{
 			this.Velocity += Vector3.Forward * Speed;
 		}
-		else if (@event is InputEventKey keyEvent2 && keyEvent2.IsActionPressed("move_backward"))
+		if (@event is InputEventKey keyEvent2 && keyEvent2.IsActionPressed("move_backward"))
 		{
 			this.Velocity += Vector3.Back * Speed;
 		}
-		else if (@event is InputEventKey keyEvent3 && keyEvent3.IsActionPressed("move_left"))
+		if (@event is InputEventKey keyEvent3 && keyEvent3.IsActionPressed("move_left"))
 		{
 			this.Velocity += Vector3.Left * Speed;
 		}
-		else if (@event is InputEventKey keyEvent4 && keyEvent4.IsActionPressed("move_right"))
+		if (@event is InputEventKey keyEvent4 && keyEvent4.IsActionPressed("move_right"))
 		{
 			this.Velocity += Vector3.Right * Speed;
 		}
-		else if (@event is InputEventKey keyEvent5 && keyEvent5.IsActionReleased("move_forward"))
+
+		if (@event is InputEventKey keyEvent5 && keyEvent5.IsActionReleased("move_forward"))
 		{
 			this.Velocity -= Vector3.Forward * Speed;
 		}
-		else if (@event is InputEventKey keyEvent6 && keyEvent6.IsActionReleased("move_backward"))
+		if (@event is InputEventKey keyEvent6 && keyEvent6.IsActionReleased("move_backward"))
 		{
 			this.Velocity -= Vector3.Back * Speed;
 		}
-		else if (@event is InputEventKey keyEvent7 && keyEvent7.IsActionReleased("move_left"))
+		if (@event is InputEventKey keyEvent7 && keyEvent7.IsActionPressed("move_left"))
 		{
 			this.Velocity -= Vector3.Left * Speed;
 		}
-		else if (@event is InputEventKey keyEvent8 && keyEvent8.IsActionReleased("move_right"))
+		if (@event is InputEventKey keyEvent8 && keyEvent8.IsActionPressed("move_right"))
 		{
 			this.Velocity -= Vector3.Right * Speed;
 		}
-    }
+
+		if (!Input.IsAnythingPressed())
+		{
+			this.Velocity = Vector3.Zero;
+		}
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		this.MoveAndSlide();
+		if (this.Velocity != Vector3.Zero)
+		{
+			this.MoveAndCollide(this.Velocity * (float)delta);
+			//this.Velocity = Vector3.Zero;
+		}
 	}
 }

@@ -17,7 +17,7 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_as2aq"]
 
-[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("MainBody", "Nose", "EyeLeft", "EyeRight", "ArmLeft", "ArmRight", "RearLeft", "RearRight", "FaceRig", "ArmLeftRig", "ArmRightRig", "CrownRig", "RearRig")]
+[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("MainBody", "Nose", "EyeLeft", "EyeRight", "ArmLeft", "ArmRight", "RearLeft", "RearRight")]
 script = ExtResource("1_x732h")
 MainBody = NodePath("Visual/MainBody")
 Nose = NodePath("Visual/FaceRig/Nose")
@@ -27,11 +27,6 @@ ArmLeft = NodePath("Visual/ArmLeftRig/ArmLeft")
 ArmRight = NodePath("Visual/ArmRightRig/ArmRight")
 RearLeft = NodePath("Visual/RearRig/RearLeft")
 RearRight = NodePath("Visual/RearRig/RearRight")
-FaceRig = NodePath("Visual/FaceRig")
-ArmLeftRig = NodePath("Visual/ArmLeftRig")
-ArmRightRig = NodePath("Visual/ArmRightRig")
-CrownRig = NodePath("ExtraRigs/CrownRig")
-RearRig = NodePath("Visual/RearRig")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
